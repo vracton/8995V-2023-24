@@ -111,24 +111,32 @@ void screen(){
 void initialize(){
 	pros::lcd::initialize();
 	chassi.calibrate();
-	chassi.setPose(-43.033,-64.494,0);
+	chassi.setPose(-43.033,-64.494,180);
 	pros::Task screenTask(screen);
 }
 
 //auton
-ASSET(auton1_txt);
-ASSET(auton2_txt);
+ASSET(saiisamonkey_txt);
 void autonomous() {
-  chassi.moveToPose(-61.466,-48.853,60);
-	chassi.turnTo(-61.466,32,2000);
-	chassi.follow(auton1_txt, 2, 15000, true, false);
+  chassi.moveToPoint(-59.232,-49.971,10000,false,127.0f,false);
+	chassi.turnTo(37.403,-1.933,1000,false,127.0f,false);
 	pneum.set_value(true);
-	chassi.moveToPose(44.106,-0,90);
+	cata1.move_velocity(90);
+	cata2.move_velocity(90);
+	pros::delay(7000);
+	pneum.set_value(false);
+	cata1.brake();
+	cata2.brake();
+	chassi.turnTo(-59.232,32,2000);
+	chassi.moveToPoint(-60.628,-33.213,10000);
+	chassi.follow(saiisamonkey_txt, 15.0f,10000,false,false);
+	pneum.set_value(true);
+	chassi.turnTo(45,0.0,1000);
+	chassi.moveToPoint(45,0.0,10000);
 	pros::delay(1000);
 	pneum.set_value(false);
-	chassi.follow(auton2_txt, 2, 10000, true, false);
-	pneum.set_value(true);
-	 chassi.moveToPose(59.008,27.253,180);
+	// pneum.set_value(true);
+	// chassi.moveToPoint(59.008,27.253,10000);
 	while (true){
 		pros::delay(10);
 		lemlib::Pose pose = chassi.getPose();
