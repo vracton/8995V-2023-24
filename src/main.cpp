@@ -118,7 +118,7 @@ void initialize(){
 //auton
 ASSET(saiisamonkey_txt);
 void autonomous() {
-  chassi.moveToPoint(-59.232,-49.971,10000,false,127.0f,false);
+  chassi.moveToPoint(-59.732,-49.971,2000,false,127.0f,false);
 	chassi.turnTo(37.403,-1.933,1000,false,127.0f,false);
 	pneum.set_value(true);
 	cata1.move_velocity(90);
@@ -128,11 +128,11 @@ void autonomous() {
 	cata1.brake();
 	cata2.brake();
 	chassi.turnTo(-59.232,32,2000);
-	chassi.moveToPoint(-60.628,-33.213,10000);
-	chassi.follow(saiisamonkey_txt, 15.0f,10000,false,false);
+	chassi.moveToPoint(-60.349,-34.61,2000);
+	chassi.follow(saiisamonkey_txt, 15.0f,3000,false,false);
 	pneum.set_value(true);
 	chassi.turnTo(45,0.0,1000);
-	chassi.moveToPoint(45,0.0,10000);
+	chassi.moveToPoint(45,0.0,3000);
 	pros::delay(1000);
 	pneum.set_value(false);
 	// pneum.set_value(true);
