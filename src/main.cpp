@@ -123,17 +123,27 @@ void autonomous() {
 	pneum.set_value(true);
 	cata1.move_velocity(90);
 	cata2.move_velocity(90);
-	pros::delay(7000);
+	for (double i=0;i<35;i+=0.01){
+		master.print(1, 0, "%.2fs",35-i);
+		pros::delay(10);
+	}
 	pneum.set_value(false);
 	cata1.brake();
 	cata2.brake();
 	chassi.turnTo(-59.232,32,2000);
 	chassi.moveToPoint(-60.349,-34.61,2000);
-	chassi.follow(saiisamonkey_txt, 15.0f,3000,false,false);
+	chassi.follow(saiisamonkey_txt, 15.0f,19000,false,false);
 	pneum.set_value(true);
 	chassi.turnTo(45,0.0,1000);
 	chassi.moveToPoint(45,0.0,3000);
 	pros::delay(1000);
+	chassi.moveToPoint(35,0.0,3000);
+	pros::delay(1000);
+	chassi.moveToPoint(45,0.0,3000);
+	pros::delay(1000);
+	chassi.moveToPoint(35,0.0,3000);
+	pros::delay(1000);
+	chassi.moveToPoint(20,0.0,3000);
 	pneum.set_value(false);
 	// pneum.set_value(true);
 	// chassi.moveToPoint(59.008,27.253,10000);
