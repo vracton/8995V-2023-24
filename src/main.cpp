@@ -137,11 +137,11 @@ void autonomous() {
 	chassi.turnTo(45,0.0,1000);
 	chassi.moveToPoint(45,0.0,3000);
 	pros::delay(1000);
-	chassi.moveToPoint(35,0.0,3000);
+	chassi.moveToPoint(25,0.0,3000);
 	pros::delay(1000);
 	chassi.moveToPoint(45,0.0,3000);
 	pros::delay(1000);
-	chassi.moveToPoint(35,0.0,3000);
+	chassi.moveToPoint(25,0.0,3000);
 	pros::delay(1000);
 	chassi.moveToPoint(20,0.0,3000);
 	pneum.set_value(false);
