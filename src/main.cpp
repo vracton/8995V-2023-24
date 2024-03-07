@@ -116,11 +116,16 @@ void initialize(){
 }
 
 //auton
+//load pure pursuit path
 ASSET(saiisamonkey_txt);
 void autonomous() {
+	//go to matchload spot
   chassi.moveToPoint(-59.732,-49.971,2000,false,127.0f,false);
+	//turn to face cata
 	chassi.turnTo(37.403,-1.933,1000,false,127.0f,false);
+	//move back to touch bar
 	chassi.moveToPoint(-58.732,-49.971,2000,true,127.0f,false);
+	//turn on cata
 	cata1.move_velocity(90);
 	cata2.move_velocity(90);
 	for (double i=0;i<2;i+=0.01){
@@ -129,10 +134,12 @@ void autonomous() {
 	}
 	cata1.brake();
 	cata2.brake();
+	//push in ball(s)
 	chassi.turnTo(-62.863,-68,2000);
 	chassi.moveToPoint(-62.863,-34.75,2000);
+	//go to other side
 	chassi.follow(saiisamonkey_txt, 15.0f,19000,false,false);
-	//pos 1
+	//left
 	chassi.turnTo(45,-3.05,1000);
 	pneum.set_value(true);
 	chassi.moveToPoint(45,-3.05,1500);
@@ -141,7 +148,7 @@ void autonomous() {
 	chassi.moveToPoint(45,-3.05,1500);
 	pros::delay(500);
 	chassi.moveToPoint(20,-3.05,3000, false);
-	//pos 2
+	//right
 	chassi.turnTo(52.205, -11.149,1000);
 	chassi.moveToPoint(45,-11.05,1500);
 	pros::delay(500);
@@ -150,8 +157,6 @@ void autonomous() {
 	pros::delay(500);
 	chassi.moveToPoint(20,-11.05,3000, false);
 	pneum.set_value(false);
-	// pneum.set_value(true);
-	// chassi.moveToPoint(59.008,27.253,10000);
 	while (true){
 		pros::delay(10);
 		lemlib::Pose pose = chassi.getPose();
