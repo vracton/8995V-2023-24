@@ -117,7 +117,7 @@ void initialize(){
 
 //auton
 //load pure pursuit path
-ASSET(saiisamonkey_txt);
+ASSET(crossover_txt);
 void autonomous() {
 	//go to matchload spot
   chassi.moveToPoint(-59.732,-49.971,2000,false,127.0f,false);
@@ -139,8 +139,8 @@ void autonomous() {
 	//push in ball(s)
 	chassi.turnTo(-62.863,-68,2000);
 	chassi.moveToPoint(-62.863,-34.75,2000);
-	//go to other side
-	chassi.follow(saiisamonkey_txt, 15.0f,19000,false,false);
+	//crossover to other side
+	chassi.follow(crossover_txt, 15.0f,19000,false,false);
 	//left
 	chassi.turnTo(45,-3.05,1000);
 	pneum.set_value(true);
@@ -152,7 +152,7 @@ void autonomous() {
 	pros::delay(500);
 	chassi.moveToPoint(20,-11.05,3000, false);
 	//right
-	//chassi.turnTo(52.205, -11.149,1000); uncommented before 
+	//chassi.turnTo(52.205, -11.149,1000); uncommented before, testing to see if turnto is neccesary
 	chassi.moveToPoint(45,3.05,1500);
 	pros::delay(500);
 	chassi.moveToPoint(20,3.05,1500,false);
