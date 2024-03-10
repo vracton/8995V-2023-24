@@ -126,14 +126,16 @@ void autonomous() {
 	//move back to touch bar
 	chassi.moveToPoint(-58.732,-49.971,2000,true,127.0f,false);
 	//turn on cata
+	pneum.set_value(true);
 	cata1.move_velocity(90);
 	cata2.move_velocity(90);
-	for (double i=0;i<2;i+=0.01){
+	for (double i=0;i<=35;i+=0.01){
 		master.print(1, 0, "%.2fs",35-i);
 		pros::delay(10);
 	}
 	cata1.brake();
 	cata2.brake();
+	pneum.set_value(false);
 	//push in ball(s)
 	chassi.turnTo(-62.863,-68,2000);
 	chassi.moveToPoint(-62.863,-34.75,2000);
@@ -142,26 +144,27 @@ void autonomous() {
 	//left
 	chassi.turnTo(45,-3.05,1000);
 	pneum.set_value(true);
-	chassi.moveToPoint(45,-3.05,1500);
-	pros::delay(500);
-	chassi.moveToPoint(20,-3.05,1500,false);
-	chassi.moveToPoint(45,-3.05,1500);
-	pros::delay(500);
-	chassi.moveToPoint(20,-3.05,3000, false);
-	//right
-	chassi.turnTo(52.205, -11.149,1000);
-	chassi.moveToPoint(45,-11.05,1500);
+	chassi.moveToPoint(45,-10.05,1500);
+	//before -3 and -11 (10 and 3 now)
 	pros::delay(500);
 	chassi.moveToPoint(20,-11.05,1500,false);
 	chassi.moveToPoint(45,-11.05,1500);
 	pros::delay(500);
 	chassi.moveToPoint(20,-11.05,3000, false);
+	//right
+	//chassi.turnTo(52.205, -11.149,1000); uncommented before 
+	chassi.moveToPoint(45,3.05,1500);
+	pros::delay(500);
+	chassi.moveToPoint(20,3.05,1500,false);
+	chassi.moveToPoint(45,3.05,1500);
+	pros::delay(500);
+	chassi.moveToPoint(20,3.05,3000, false);
 	pneum.set_value(false);
-	while (true){
-		pros::delay(10);
-		lemlib::Pose pose = chassi.getPose();
-		master.print(1, 0, "y: %f", pose.y);
-	}
+	// while (true){
+	// 	pros::delay(10);
+	// 	lemlib::Pose pose = chassi.getPose();
+	// 	master.print(1, 0, "y: %f", pose.y);
+	// }
 }
 
 //driver control
@@ -169,6 +172,16 @@ bool pneumOut = false;
 bool cataOn = false;
 
 void opcontrol(){
+	//go to matchload spot
+  chassi.moveToPoint(-59.732,-49.971,2000,false,127.0f,false);
+	//turn to face cata
+	chassi.turnTo(37.403,-1.933,1000,false,127.0f,false);
+	//move back to touch bar
+	chassi.moveToPoint(-58.732,-49.971,2000,true,127.0f,false);
+	//turn on cata
+	cataOn = true;
+	cata1.move_velocity(100);
+	cata2.move_velocity(100);
 	while (true){
 		//drive (mabe change later)
 		chassi.tank(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y), 2.7);
@@ -184,8 +197,8 @@ void opcontrol(){
 		if (master.get_digital_new_press(DIGITAL_R1)){
 			if (!cataOn){
 				cataOn = true;
-				cata1.move_velocity(90);
-				cata2.move_velocity(90);
+				cata1.move_velocity(100);
+				cata2.move_velocity(100);
 			}
 		}
 		if (master.get_digital_new_press(DIGITAL_R2)){
