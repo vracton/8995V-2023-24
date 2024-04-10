@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "verberantia eos",
+    "project_name": "skilllzzz",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -347,7 +347,9 @@
       }
     },
     "upload_options": {
-      "icon": "alien"
+      "icon": "alien",
+      "slot": 4,
+      "description": "skills"
     }
   }
 }
